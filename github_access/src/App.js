@@ -50,7 +50,7 @@ function Navbar(){
         <ul className="navbar-nav">
           <li className ="nav-item">
             <center>
-            <a className="nav-link" href="/">Github API Visualisation Log in</a>
+            <a className="nav-link" href="/">Github API Visualisation Log In</a>
             </center>
           </li>
           <li className ="nav-item">
@@ -67,16 +67,45 @@ function Home() {
   return (
       <div>
         <UserProfile name="Dillon" />
+      <div className="container">
+        <div className="row">
+          <div className="col-12 text-center">
+            <Link to="/repo" type="button" className="btn">Repositories</Link>
+          </div>
+          <div className="col-12 text-center">
+            <Link to="/commits" type="button" className="btn">Number of commits</Link>
+          </div>
+        </div>
+      </div>
+    </div>
+    //something to take up all empty space
+  );
+}
 
+function UserProfile(props){
+  return(
+    <div className="container">
+      <h2 className="text-center">Welcome Back {props.name} !</h2>
     </div>
   );
 }
 
-
-function UserProfile(Username){
+function Repositories(){
   return(
     <div className="container">
-      <h2 className="text-center">Welcome Back {Username.name} !</h2>
+      <h2 className="text-center">This is a list of all your repos</h2>
+      <div className="row">
+      </div>
+    </div>
+  );
+}
+
+function commits() {
+  return (
+    <div className="container">
+      <h2 className="text-center">commits</h2>
+      <div className="row">
+      </div>
     </div>
   );
 }
