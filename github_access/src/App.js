@@ -50,7 +50,7 @@ function Navbar(){
         <ul className="navbar-nav">
           <li className ="nav-item">
             <center>
-            <a className="nav-link" href="/">Github API Visualisation Log In</a>
+            <a className="nav-link" href="/LogIn">Github API Visualisation Log In</a>
             </center>
           </li>
           <li className ="nav-item">
