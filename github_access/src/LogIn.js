@@ -34,12 +34,10 @@ handleChange(event) {
       <h1>Github Log In Page</h1>
       <form onSubmit={this.handleSubmit}>
       <label>
-        <p>Username: </p>
-        <input type="text" value={this.state.value} onChange={this.handleChange} />
-        <p>Password: </p>
+        <p>Github Username: </p>
         <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
-      <Link className="btn btn-primary small" to="/">Log in</Link>
+      <Link className="btn btn-primary small" to="/">Log In</Link>
       </form>
       </header>
       </div>
