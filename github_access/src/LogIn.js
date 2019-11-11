@@ -37,7 +37,8 @@ handleChange(event) {
         <p>Github Username: </p>
         <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
-      <Link className="btn btn-primary small" to="/">Log In</Link>
+      <Link className="btn btn-primary small" to="/Home">Log In</Link>
+
       </form>
       </header>
       </div>
