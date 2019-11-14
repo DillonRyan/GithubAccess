@@ -8,16 +8,17 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import ProfileDetails from './components/ProfileDetails.jsx';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      gitun: '',
-      info: '',
-      formData: {
-        username: '',
-      }
+      gitun: 'No username',
+       infoclean : '',
+       formData: {
+         username: '',
+       },
     }
     this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
     this.handleFormChange= this.handleFormChange.bind(this);
@@ -28,9 +29,10 @@ class App extends Component {
     axios.get('https://api.github.com/users/'+this.state.formData.username)
     .then(response => this.setState({
       gitun: response.data.login,
-      info : JSON.stringify(response.data, undefined, 2)
+      infoclean: response.data,
     })).catch((err) => { console.log(err); });
-  };handleFormChange(event) {
+  };
+  handleFormChange(event) {
     const obj = this.state.formData;
     obj[event.target.name] = event.target.value;
     this.setState(obj);
@@ -56,16 +58,17 @@ class App extends Component {
         <p className="App-intro">
           Please enter the github username you'd like to see Information about
         </p>
+        <hr></hr>
         <Form
           formData={this.state.formData}
           handleUserFormSubmit={this.handleUserFormSubmit}
           handleFormChange={this.handleFormChange}
         />
-        <p><b>Github username:</b></p>
-        <p>{this.state.gitun}</p>
-        <b>Data bout this user:</b>
-        <pre>{this.state.info}</pre>
-        </center></div>
+        <hr></hr>
+        Profile Details:
+        <ProfileDetails infoclean={this.state.infoclean}/>
+        </center>
+</div>
     );
   }
 }export default App;
