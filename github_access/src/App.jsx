@@ -53,9 +53,6 @@ class App extends Component {
         </div>
       </Router>
         <center>
-        <header className="App-header">
-          <h1 className="App-title">GitHub Visualisation</h1>
-        </header>
         <p className="App-intro">
           Please enter the github username you'd like to see Information about
         </p>
@@ -64,10 +61,11 @@ class App extends Component {
           handleUserFormSubmit={this.handleUserFormSubmit}
           handleFormChange={this.handleFormChange}
         />
-        <p><b>Username:</b></p>
+        <p><b>Github username:</b></p>
         <p>{this.state.gitun}</p>
-        <b>Information:</b>
-        <pre>{this.state.info}</pre></center></div>
+        <b>Data bout this user:</b>
+        <pre>{this.state.info}</pre>
+        </center></div>
     );
   }
 }export default App;
@@ -82,11 +80,8 @@ function Navbar(){
         <ul className="navbar-nav">
           <li className ="nav-item">
             <center>
-            <a className="nav-link" href="/LogIn">Github API Visualisation Log In</a>
+            <a className="nav-link" href="/Home">Click here to search a new username</a>
             </center>
-          </li>
-          <li className ="nav-item">
-            <a className="nav-link" href="/Home">Home</a>
           </li>
         </ul>
       </div>
@@ -98,26 +93,15 @@ function Navbar(){
 function Home() {
   return (
       <div>
-        <UserProfile name="Dillon" />
-      <div className="container">
-        <div className="row">
-          <div className="col-12 text-center">
-            <Link to="/repo" type="button" className="btn">Repositories</Link>
-          </div>
-          <div className="col-12 text-center">
-            <Link to="/commits" type="button" className="btn">Number of commits</Link>
-          </div>
-        </div>
-      </div>
+
     </div>
-    //something to take up all empty space
   );
 }
 
 function UserProfile(props){
   return(
     <div className="container">
-      <h2 className="text-center">Welcome Back {props.name} !</h2>
+      <h2 className="text-center">Welcome Back!</h2>
     </div>
   );
 }
