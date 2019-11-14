@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Component } from 'react';
 import "./App.css";
-import LogIn from "./LogIn"
+import axios from 'axios';import Form from './components/Form.jsx';
 import 'bootstrap/dist/css/bootstrap.css' ;
 import {
   BrowserRouter as Router,
@@ -9,36 +9,68 @@ import {
   Link
 } from "react-router-dom";
 
-export default function App() {
-  return (
-    <Router>
-      <div>
-        <Navbar />
-        <div className="space"></div>
-        <Switch>
-          <Route path="/login">
-            <LogIn />
-          </Route>
-          <Route path="/Home">
-            <Home />
-          </Route>
-          <Route path="/">
-            <LogIn /> // - this sets the default page to be the login page
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      gitun: '',
+      info: '',
+      formData: {
+        username: '',
+      }
+    }
+    this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
+    this.handleFormChange= this.handleFormChange.bind(this);
+  }
 
-function Login(){
-  return(
-    <div>
-      <LogIn />
-    </div>
-  );
+  handleUserFormSubmit(event) {
+    event.preventDefault();
+    axios.get('https://api.github.com/users/'+this.state.formData.username)
+    .then(response => this.setState({
+      gitun: response.data.login,
+      info : JSON.stringify(response.data, undefined, 2)
+    })).catch((err) => { console.log(err); });
+  };handleFormChange(event) {
+    const obj = this.state.formData;
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
+  };render() {
+    return (
+      <div className="App">
+      <Router>
+        <div>
+          <Navbar />
+          <div className="space"></div>
+          <Switch>
 
-}
+            <Route path="/Home">
+              <Home />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+        <center>
+        <header className="App-header">
+          <h1 className="App-title">GitHub Visualisation</h1>
+        </header>
+        <p className="App-intro">
+          Please enter the github username you'd like to see Information about
+        </p>
+        <Form
+          formData={this.state.formData}
+          handleUserFormSubmit={this.handleUserFormSubmit}
+          handleFormChange={this.handleFormChange}
+        />
+        <p><b>Username:</b></p>
+        <p>{this.state.gitun}</p>
+        <b>Information:</b>
+        <pre>{this.state.info}</pre></center></div>
+    );
+  }
+}export default App;
 
 function Navbar(){
   return (
