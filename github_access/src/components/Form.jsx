@@ -12,7 +12,7 @@ import React from 'react';const Form = (props) => {
       <div>
       <input
         type="submit"
-        value="Submit"
+        value="See Data"
       />
     </div>
     </form>)};export default Form;

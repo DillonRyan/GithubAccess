@@ -9,6 +9,9 @@ import {
   Link
 } from "react-router-dom";
 import ProfileDetails from './components/ProfileDetails.jsx';
+import SortedList from './components/SortedList.jsx';
+import LanguageList from './components/LanguageList.jsx';
+import lda from './lda';
 
 class App extends Component {
   constructor() {
@@ -19,6 +22,10 @@ class App extends Component {
        formData: {
          username: '',
        },
+       repitems: null,
+     staritems: null,
+     replanguagecount: {},
+      keywords: null
     }
     this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
     this.handleFormChange= this.handleFormChange.bind(this);
@@ -30,13 +37,73 @@ class App extends Component {
     .then(response => this.setState({
       gitun: response.data.login,
       infoclean: response.data,
+      info : JSON.stringify(response.data, undefined, 2)
     })).catch((err) => { console.log(err); });
-  };
+axios.get('https://api.github.com/users/'+this.state.formData.username+'/repos')
+    .then(response => {
+var itemsWithFalseForks = response.data.filter(item => item.fork === false)
+var sortedItems = itemsWithFalseForks.sort((b,a) => {
+        if((a.watchers_count +  a.forks_count) < (b.forks_count + b.watchers_count)){
+          return -1
+        }else if ((a.watchers_count +  a.forks_count) > (b.forks_count + b.watchers_count)){
+          return 1
+        }else {
+          return 0
+        }
+      })
+let dictrlc = Object.assign({}, this.state.replanguagecount);
+      for (var i = 0; i < itemsWithFalseForks.length; i++) {
+          dictrlc[itemsWithFalseForks[i]['language']] = -~ dictrlc[itemsWithFalseForks[i]['language']]
+      }
+this.setState({
+        repitems: sortedItems.slice(0,10),
+        replanguagecount: dictrlc,
+      })
+}).catch((err) => { console.log(err); })
+axios.get('https://api.github.com/users/'+this.state.formData.username+'/starred')
+    .then(response => {
+var itemsWithFalseForks = response.data.filter(item => item.fork === false)
+var sortedItems = itemsWithFalseForks.sort((b,a) => {
+        if((a.watchers_count +  a.forks_count) < (b.forks_count + b.watchers_count)){
+          return -1
+        }else if ((a.watchers_count +  a.forks_count) > (b.forks_count + b.watchers_count)){
+          return 1
+        }else {
+          return 0
+        }
+      })
+var documents = []
+      for (var i = 0; i < response.data.length; i++) {
+          var descr = response.data[i]['description']
+          if (descr != null) {
+            var newtext = descr.match(/[^.!?]+[.!?]+/g)
+            if (newtext != null) {
+              documents = documents.concat(newtext)
+            }
+          }
+      }
+      var result = lda(documents, 3, 3);
+      var keywords = new Set()
+      for (var k = 0; k < 3; k++) {
+        for (var j = 0; j < 3; j++) {
+          keywords = keywords.add(result[k][j]['term']);
+        }
+      }
+this.setState({
+        staritems: sortedItems.slice(0,10),
+        keywords: Array.from(keywords).join(', ')
+      })
+}).catch((err) => { console.log(err); })
+};
+
+
+
   handleFormChange(event) {
     const obj = this.state.formData;
     obj[event.target.name] = event.target.value;
     this.setState(obj);
-  };render() {
+  };
+  render() {
     return (
       <div className="App">
       <Router>
@@ -55,9 +122,9 @@ class App extends Component {
         </div>
       </Router>
         <center>
-        <p className="App-intro">
+        <h1 className="App-intro">
           Please enter the github username you'd like to see Information about
-        </p>
+        </h1>
         <hr></hr>
         <Form
           formData={this.state.formData}
@@ -65,8 +132,20 @@ class App extends Component {
           handleFormChange={this.handleFormChange}
         />
         <hr></hr>
-        Profile Details:
+        <div>
+        <p>Profile Details:</p>
         <ProfileDetails infoclean={this.state.infoclean}/>
+        </div>
+        <hr></hr>
+        Own Repositories:
+        <SortedList repitems={this.state.repitems}/>
+        <hr></hr>
+        Starred Repositories:
+        <SortedList repitems={this.state.staritems}/>
+        <hr></hr>
+       Own Repos Language Count:
+       <LanguageList langslist={this.state.replanguagecount}/>
+        Keywords:  {this.state.keywords}
         </center>
 </div>
     );
@@ -105,26 +184,6 @@ function UserProfile(props){
   return(
     <div className="container">
       <h2 className="text-center">Welcome Back!</h2>
-    </div>
-  );
-}
-
-function Repositories(){
-  return(
-    <div className="container">
-      <h2 className="text-center">This is a list of all your repos</h2>
-      <div className="row">
-      </div>
-    </div>
-  );
-}
-
-function commits() {
-  return (
-    <div className="container">
-      <h2 className="text-center">commits</h2>
-      <div className="row">
-      </div>
     </div>
   );
 }
