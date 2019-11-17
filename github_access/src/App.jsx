@@ -103,6 +103,8 @@ this.setState({
     obj[event.target.name] = event.target.value;
     this.setState(obj);
   };
+
+
   render() {
     return (
       <div className="App">
@@ -111,12 +113,14 @@ this.setState({
           <Navbar />
           <div className="space"></div>
           <Switch>
-
             <Route path="/Home">
               <Home />
             </Route>
             <Route path="/">
               <Home />
+            </Route>
+              <Route path ="/RepoOnly">
+              <RepoOnly />
             </Route>
           </Switch>
         </div>
@@ -137,9 +141,11 @@ this.setState({
         <ProfileDetails infoclean={this.state.infoclean}/>
         </div>
         <hr></hr>
-        Own Repositories:
+        <div>
+        <p>Own Repositories:</p>
         <SortedList repitems={this.state.repitems}/>
         <hr></hr>
+        </div>
         Starred Repositories:
         <SortedList repitems={this.state.staritems}/>
         <hr></hr>
@@ -164,6 +170,12 @@ function Navbar(){
             <center>
             <a className="nav-link" href="/Home">Click here to search a new username</a>
             </center>
+            <center>
+
+            </center>
+          </li>
+          <li>
+          <a className="nav-link" href="/RepoOnly">Click here to see only repos</a>
           </li>
         </ul>
       </div>
@@ -180,10 +192,6 @@ function Home() {
   );
 }
 
-function UserProfile(props){
-  return(
-    <div className="container">
-      <h2 className="text-center">Welcome Back!</h2>
-    </div>
-  );
+function RepoOnly(){
+  return <h2>Repo info</h2>;
 }
