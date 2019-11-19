@@ -112,6 +112,8 @@ this.setState({
         <div>
           <Navbar />
           <div className="space"></div>
+          {
+              }
           <Switch>
             <Route path="/Home">
               <Home />
@@ -120,6 +122,8 @@ this.setState({
               <Home />
             </Route>
               <Route path ="/RepoOnly">
+              <Link to="/RepoOnly">
+              </Link>
               <RepoOnly />
             </Route>
           </Switch>
@@ -174,8 +178,8 @@ function Navbar(){
 
             </center>
           </li>
-          <li>
-          <a className="nav-link" href="/RepoOnly">Click here to see only repos</a>
+          <li className = "nav-item">
+          <a className="nav-link" Link to ="/RepoOnly" href="/RepoOnly">Click here to see only repos</a>
           </li>
         </ul>
       </div>
@@ -184,14 +188,18 @@ function Navbar(){
 
 }
 
-function Home() {
-  return (
-      <div>
-
+function Home (){
+  return(
+    <div>
     </div>
   );
 }
 
+
 function RepoOnly(){
-  return <h2>Repo info</h2>;
+  return (
+  <div className="container">
+  <h1>Repos shown only</h1>
+  </div>
+);
 }
