@@ -46,6 +46,7 @@ const LanguageList = (props) => {
           {Object.entries(props.langslist).map(([key,value]) =>
             <li key={key}>
               {key} - {value}
+                <div>
               <BarChart
                  width={700}
                  height={350}
@@ -59,12 +60,12 @@ const LanguageList = (props) => {
                  <Legend />
                  <Bar dataKey="score" fill="#8884d8" />
                  <ReferenceLine y={0} label={{ infront: 'true', position: 'insideBottomRight',  value: 'Zero', fill: 'black', fontSize: 18}} stroke="green"/>
-                 <ReferenceLine y={4} label={{ infront: 'true', position: 'insideBottomRight',  value: 'Four', fill: 'black', fontSize: 18}} stroke="blue"/>
-                 <ReferenceLine y={8} label={{ infront: 'true', position: 'insideBottomRight',  value: 'Eight', fill: 'black', fontSize: 18}} stroke="black"/>
-                 <ReferenceLine y={12} label={{ infront: 'true', position: 'insideBottomRight',  value: 'Twelve', fill: 'black', fontSize: 18}} stroke="purple"/>
-                 <ReferenceLine y={16} label={{ infront: 'true', position: 'insideBottomRight', value: 'Sixteen', fill: 'black', fontSize: 18}} stroke="red"/>
+                 <ReferenceLine y={5} label={{ infront: 'true', position: 'insideBottomRight',  value: 'Fiv', fill: 'black', fontSize: 18}} stroke="blue"/>
+                 <ReferenceLine y={10} label={{ infront: 'true', position: 'insideBottomRight',  value: 'Ten', fill: 'black', fontSize: 18}} stroke="black"/>
+                 <ReferenceLine y={15} label={{ infront: 'true', position: 'insideBottomRight',  value: 'Fifteen', fill: 'black', fontSize: 18}} stroke="purple"/>
+                 <ReferenceLine y={20} label={{ infront: 'true', position: 'insideBottomRight', value: 'Twenty', fill: 'black', fontSize: 18}} stroke="red"/>
               </BarChart>
-
+              </div>
             </li>
           )}
         </ul>
