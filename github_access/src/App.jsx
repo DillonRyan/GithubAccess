@@ -25,7 +25,7 @@ class App extends Component {
        repitems: null,
      staritems: null,
      replanguagecount: {},
-      keywords: null
+
     }
     this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
     this.handleFormChange= this.handleFormChange.bind(this);
@@ -83,15 +83,9 @@ var documents = []
           }
       }
       var result = lda(documents, 3, 3);
-      var keywords = new Set()
-      for (var k = 0; k < 3; k++) {
-        for (var j = 0; j < 3; j++) {
-          keywords = keywords.add(result[k][j]['term']);
-        }
-      }
+
 this.setState({
         staritems: sortedItems.slice(0,10),
-        keywords: Array.from(keywords).join(', ')
       })
 }).catch((err) => { console.log(err); })
 };
@@ -155,7 +149,7 @@ this.setState({
         <hr></hr>
        Own Repos Language Count:
        <LanguageList langslist={this.state.replanguagecount}/>
-        Keywords:  {this.state.keywords}
+
         </center>
 </div>
     );

@@ -41,6 +41,9 @@ const data = [
 
 const LanguageList = (props) => {
   if (props.langslist) {
+    {
+      var totalcount =  Object.entries(props.langslist).map(([key,value]) =>
+        (value.count)).reduce((pv, cv) => pv+cv, 0 ) }
     return (
         <ul>
           {Object.entries(props.langslist).map(([key,value]) =>
@@ -70,6 +73,6 @@ const LanguageList = (props) => {
           )}
         </ul>
       )
-  } else { return null;}
+  }
   };
 export default LanguageList;
