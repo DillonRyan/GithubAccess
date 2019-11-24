@@ -41,6 +41,7 @@ const ProfileDetails = (props) => {
         <div>
           {props.infoclean.public_repos ? <div><p>Public Repos:</p><p>{props.infoclean.public_repos}</p></div> : null }
         </div>
+        
         <div>
           {props.infoclean.followers ? <div><p>Followers:</p><p>{props.infoclean.followers}</p></div> : null }
         </div>
@@ -50,7 +51,7 @@ const ProfileDetails = (props) => {
         <div>
           {props.infoclean.html_url ? <div><p><a href={props.infoclean.html_url} target="_blank">View on GitHub</a></p></div> : null }
         </div>
-        
+
 
       </div>
     )
