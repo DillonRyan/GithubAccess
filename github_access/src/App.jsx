@@ -12,6 +12,7 @@ import ProfileDetails from './components/ProfileDetails.jsx';
 import SortedList from './components/SortedList.jsx';
 import LanguageList from './components/LanguageList.jsx';
 import lda from './lda';
+import BarChart from './components/BarChart.jsx';;
 
 
 class App extends Component {
@@ -134,22 +135,21 @@ this.setState({
           handleUserFormSubmit={this.handleUserFormSubmit}
           handleFormChange={this.handleFormChange}
         />
-        <hr></hr>
         <div>
         <p>Profile Details:</p>
         <ProfileDetails infoclean={this.state.infoclean}/>
         </div>
-        <hr></hr>
         <div>
         <p>Own Repositories:</p>
         <SortedList repitems={this.state.repitems}/>
-        <hr></hr>
+
         </div>
         Starred Repositories:
         <SortedList repitems={this.state.staritems}/>
-        <hr></hr>
        Own Repos Language Count:
        <LanguageList langslist={this.state.replanguagecount}/>
+       Bar chart of languages:
+       <BarChart BarCharts={this.state.replanguagecount}/>
 
         </center>
 </div>
