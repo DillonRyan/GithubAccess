@@ -1,72 +1,33 @@
-import React, { Component } from "react";
-import {
-  LineChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  Line,
-  ComposedChart,
-  Area,
-  ReferenceLine,
-  Bar,
-  BarChart,
-  ResponsiveContainer
-} from "recharts";
+import React from 'react';
+import BarChart from './BarChart.js';
 
-const data = [
-  {
-    date: "Java",
-    score: 25
-  },
-  {
-    date: "ARM",
-    score: 5
-  },
-  {
-    date: "C",
-    score: 3
-  },
-  {
-    date: "Haskell",
-    score: 2
-  },
-  {
-    date : "Prolog",
-    score : 2
-  }
-];
-/*
-const userInfo = (props) => [
-  Object.entries(props.langslist).map(([key,value]) =>
-  (value.count)).reduce((pv, cv) => pv+cv, 0 )
-];
-*/
 
+let langs = '';
+let i = '';
 
 
 const LanguageList = (props) => {
-  if (props.langslist) {
+    if (props.langslist) {
+        return (
+            <ul>
+                {Object.entries(props.langslist).map(([key, value]) =>
+                    <li key={key}>
+                        {key} - {value}
+                        {console.log(i=i+value)}
+                        {console.log(langs=langs+key+'.')}
 
-    {
+                    </li>
 
-      var totalcount =  Object.entries(props.langslist).map(([key,value]) =>
-      (value.count)).reduce((pv, cv) => pv+cv, 0 ) }
-        return(
-
-          <ul>
-            {Object.entries(props.langslist).map(([key,value]) =>
-              <li key={key}>
-                {key} -> {value}
-                </li>
-              )}
-
+                )}
+                <div>
+                    <BarChart repoSize={i.split('')} repoNames={langs.split('.')}/>
+                   { i= ''};
+                   {langs = ''};
+                </div>
 
             </ul>
+
         )
-}
-
-
-  };
+    } else { return null; }
+};
 export default LanguageList;

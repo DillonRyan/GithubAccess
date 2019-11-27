@@ -12,8 +12,8 @@ import ProfileDetails from './components/ProfileDetails.jsx';
 import SortedList from './components/SortedList.jsx';
 import LanguageList from './components/LanguageList.jsx';
 import lda from './lda';
-import BarChart from './components/BarChart.jsx';;
 
+var testArray = [];
 
 class App extends Component {
   constructor() {
@@ -57,6 +57,7 @@ let dictrlc = Object.assign({}, this.state.replanguagecount);
       for (var i = 0; i < itemsWithFalseForks.length; i++) {
           dictrlc[itemsWithFalseForks[i]['language']] = -~ dictrlc[itemsWithFalseForks[i]['language']]
       }
+console.log(dictrlc)
 this.setState({
         repitems: sortedItems.slice(0,10),
         replanguagecount: dictrlc,
@@ -92,6 +93,15 @@ this.setState({
 }).catch((err) => { console.log(err); })
 };
 
+getChartData()
+{
+  for(let i in this.state.replanguagecount)
+  {
+   testArray.push(this.state.replanguagecount);
+  }
+  console.log(testArray);
+}
+
 
 
   handleFormChange(event) {
@@ -102,6 +112,8 @@ this.setState({
 
 
   render() {
+
+    console.log(this.state.replanguagecount.value)
     return (
       <div className="App">
       <Router>
@@ -148,12 +160,12 @@ this.setState({
         <SortedList repitems={this.state.staritems}/>
        Own Repos Language Count:
        <LanguageList langslist={this.state.replanguagecount}/>
-       Bar chart of languages:
-       <BarChart BarCharts={this.state.replanguagecount}/>
 
         </center>
 </div>
+
     );
+
   }
 }export default App;
 
