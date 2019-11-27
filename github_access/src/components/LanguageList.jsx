@@ -1,9 +1,13 @@
 import React from 'react';
 import BarChart from './BarChart.js';
+import PieChart from './PieChart.js';
 
 
-let langs = '';
-let i = '';
+let langs = ''
+let i = ''
+
+let langs1 = ''
+let i1 = ''
 
 
 const LanguageList = (props) => {
@@ -16,15 +20,22 @@ const LanguageList = (props) => {
                         {console.log(i=i+value)}
                         {console.log(langs=langs+key+'.')}
 
+                        {console.log(i1=i1+value)}
+                        {console.log(langs1=langs1+key+'.')}
+
                     </li>
 
                 )}
                 <div>
-                    <BarChart repoSize={i.split('')} repoNames={langs.split('.')}/>
-                   { i= ''};
-                   {langs = ''};
+                    <PieChart repoSize={i1.split('')} repoNames={langs1.split('.')}/>
+                   { i1= ''}
+                   {langs1 = ''}
                 </div>
-
+                <div>
+                    <BarChart repoSize={i.split('')} repoNames={langs.split('.')}/>
+                   { i= ''}
+                   {langs = ''}
+                </div>
             </ul>
 
         )
