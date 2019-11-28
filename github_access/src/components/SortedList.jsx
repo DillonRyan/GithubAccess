@@ -11,15 +11,17 @@ const SortedList = (props) => {
             <li key={repitem.id}>
               <div>
                 <div>
-                  <a href={repitem.html_url} target="_blank">{repitem.name}</a> || Started <Moment from={new Date()}>{repitem.created_at}</Moment>
+                  <a>Repo name : {repitem.name}</a> , Created <Moment from={new Date()}>{repitem.created_at}</Moment>
                 </div>
                 <div>
                   <i>{repitem.description}</i>
                 </div>
                 <div>
-                 Language: {repitem.language} || Watchers: {repitem.watchers_count} || Forks: {repitem.forks_count}
+                 Language: {repitem.language} 
                 </div>
+                <a href={repitem.html_url} target="_blank">Click here to view repo on GitHub</a>
               </div>
+              <br></br>
             </li>
           )}
         </ul>

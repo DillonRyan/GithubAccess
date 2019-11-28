@@ -129,36 +129,33 @@ getChartData()
             <Route path="/">
               <Home />
             </Route>
-              <Route path ="/RepoOnly">
-              <Link to="/RepoOnly">
-              </Link>
-              <RepoOnly />
-            </Route>
           </Switch>
         </div>
       </Router>
         <center>
-        <h1 className="App-intro">
+        <h4 className="App-intro">
           Please enter the github username you'd like to see Information about
-        </h1>
+        </h4>
         <hr></hr>
         <Form
           formData={this.state.formData}
           handleUserFormSubmit={this.handleUserFormSubmit}
           handleFormChange={this.handleFormChange}
         />
-        <div>
-        <p>Profile Details:</p>
+        <br></br>
+
+
+
         <ProfileDetails infoclean={this.state.infoclean}/>
-        </div>
-        <div>
-        <p>Own Repositories:</p>
+
+
+
         <SortedList repitems={this.state.repitems}/>
 
-        </div>
-        Starred Repositories:
+        
+
         <SortedList repitems={this.state.staritems}/>
-       Own Repos Language Count:
+
        <LanguageList langslist={this.state.replanguagecount}/>
 
         </center>
@@ -185,9 +182,6 @@ function Navbar(){
 
             </center>
           </li>
-          <li className = "nav-item">
-          <a className="nav-link" Link to ="/RepoOnly" href="/RepoOnly">Click here to see only repos</a>
-          </li>
         </ul>
       </div>
     </nav>
@@ -200,13 +194,4 @@ function Home (){
     <div>
     </div>
   );
-}
-
-
-function RepoOnly(){
-  return (
-  <div className="container">
-  <h1>Repos shown only</h1>
-  </div>
-);
 }

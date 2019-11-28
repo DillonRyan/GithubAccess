@@ -10,6 +10,7 @@ let langs1 = ''
 let i1 = ''
 
 
+
 const LanguageList = (props) => {
     if (props.langslist) {
         return (
@@ -22,6 +23,8 @@ const LanguageList = (props) => {
 
                         {console.log(i1=i1+value)}
                         {console.log(langs1=langs1+key+'.')}
+
+
 
                     </li>
 
@@ -36,6 +39,7 @@ const LanguageList = (props) => {
                    { i= ''}
                    {langs = ''}
                 </div>
+
             </ul>
 
         )
